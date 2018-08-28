@@ -25,7 +25,7 @@ To change the media player for the theme to read data from, you must change ever
 I can only test with an Nvidia GPU and the Nvidia proprietary driver, but if you're using an AMD or Intel GPU, or even a different driver, you'll need to modify the commands used to get GPU information since none of them are native to conky. I don't know and can't test the specific commands needed, so you'll need to use Google to find commands that work for you, then simply change the commands in the ```execi``` variables.
 
 ## Known Issues
-- The clock has an odd gap on the left when showing a single digit hour.
+- None! (Probably isn't very efficient though, not sure what can be done about this though)
 
 ## Attributions
 - Based originally on [conky-spoclo](https://github.com/Dacha204/conky-spoclo)

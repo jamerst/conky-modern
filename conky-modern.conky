@@ -51,7 +51,7 @@ conky.config = {
 
 conky.text = [[
 ${font GE Inspira:size=25}${time %A %e %B}
-${voffset -20}${font Noto Sans:size=75}${time %l:%M:%S}${font}${voffset 20}
+${voffset -20}${font Noto Sans:size=75}${execpi 1 date '+%l:%M:%S'| sed "s/^[ \t]*//"}${font}${voffset 20}
 \
 ${image ~/.conky/conky-modern/cpu.png -p 0, 158 -s 50x50}\
 ${goto 65}${font GE Inspira Bold:size=18}${cpu}% (${acpitemp}°)
