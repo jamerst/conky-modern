@@ -1,0 +1,78 @@
+---------------------------------------------------------------------
+-- conky-modern theme
+-- Author: jamerst
+-- Github: https://github.com/jamerst/conky-modern
+-- Based on:
+--		* https://github.com/Dacha204/conky-spoclo
+---------------------------------------------------------------------
+
+conky.config = {
+
+	background = true,
+	update_interval = 1,
+
+	double_buffer = true,
+	no_buffers = true,
+	text_buffer_size = 2048,
+
+	alignment = 'top_left',
+	gap_x = 35,
+	gap_y = 15,
+
+	short_units = true,
+
+	minimum_height = 450,
+	minimum_width = 500,
+	maximum_width = 800,
+
+	own_window = true,
+	own_window_type = 'desktop',
+
+	own_window_transparent = true,
+
+	own_window_class = 'conky-semi',
+	own_window_hints = 'undecorated,sticky,skip_taskbar,skip_pager,below',
+	border_inner_margin = 0,
+	border_outer_margin = 1,
+
+	draw_shades = false,
+	draw_outline = false,
+	draw_borders = false,
+	draw_graph_borders = false,
+
+	override_utf8_locale = true,
+	use_xft = true,
+	font = 'GE Inspira:size=20',
+	uppercase = false,
+	imlib_cache_size = 0,
+
+	default_color = '#FFFFFF',
+};
+
+conky.text = [[
+${font GE Inspira:size=25}${time %A %e %B}
+${voffset -20}${font Noto Sans:size=75}${time %l:%M:%S}${font}${voffset 20}
+\
+${image ~/.conky/conky-modern/cpu.png -p 0, 158 -s 50x50}\
+${goto 65}${font GE Inspira Bold:size=18}${cpu}% (${acpitemp}°)
+${voffset -5}${goto 65}${font GE Inspira:size=16}${execi -1 cat /proc/cpuinfo | grep 'model name' | sed -e 's/model name.*: //' -e "s/[(][^)]*[)]//g"| uniq | cut -c 1-20}
+\
+${image ~/.conky/conky-modern/gpu.png -p 0, 231 -s 50x50}\
+${voffset 20}${goto 65}${font GE Inspira Bold:size=18}${execi 1 nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits}% (${nvidia temp}°)
+${voffset -5}${goto 65}${font GE Inspira:size=16}${execi 1000 nvidia-smi --query-gpu=name --format=csv,noheader}
+\
+${image ~/.conky/conky-modern/ram.png -p 0, 303 -s 50x50}\
+${voffset 20}${goto 65}${font GE Inspira Bold:size=18}${mem}B (${memperc}%)
+${voffset -5}${goto 65}${font GE Inspira:size=16}Top Process: ${execi 1 ps aux --sort=-%mem --noheaders | awk '{print $11}' | head -1} (${top_mem mem_res 1}B)${voffset 30}
+\
+${if_running yarock}\
+	${if_match "${execi 0.5 ~/.conky/conky-modern/scripts/state.sh yarock}" != "Stopped"}\
+		${execi 0.5 ~/.conky/conky-modern/scripts/cover.sh yarock}\
+		${image ~/.conky/conky-modern/cover.png -p 0,375 -s 120x120}\
+		\
+		${voffset -10}${font GE Inspira Bold:size=18}${execpi 0.5 ~/.conky/conky-modern/scripts/title.sh yarock | fold -w 35 -s | sed 's/^/${goto 135}/'}
+		${font GE Inspira:size=16}${execpi 0.5 ~/.conky/conky-modern/scripts/artist.sh yarock | fold -w 55 -s | sed 's/^/${goto 135}/'}
+		${font GE Inspira:size=14}${execpi 0.5 ~/.conky/conky-modern/scripts/album.sh yarock | fold -w 55 -s | sed 's/^/${goto 135}/'}
+	${endif}\
+${endif}\
+]];
