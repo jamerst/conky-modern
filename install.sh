@@ -15,7 +15,6 @@ if [ -f $HOME/.conkyrc ]; then
 fi
 
 echo "Creating symlink to ~/.conkyrc.."
-ln -s $HOME/.conkyrc/conky-modern/conky-modern.conky $HOME/.conkyrc
+ln -s $HOME/.conky/conky-modern/conky-modern.conky $HOME/.conkyrc
 
-echo "Installation Complete!\nPress any key to exit."
-read
+echo "Installation Complete!"
