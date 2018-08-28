@@ -10,7 +10,7 @@ wget -O - https://github.com/jamerst/conky-modern/raw/master/install.sh | bash
 ``` 
 This will download and run the install.sh script, which will clone the repository into the correct directory, install the necessary font, and create a symlink to ~/.conkyrc. Any existing .conkyrc will not be overwritten, but will be renamed.
 
-Alternatively, just clone the github repository manually into ~/.conky/conky-modern and install the font in the fonts folder, then create a symlink from ~/.conky/conky-modern/conky-modern.conky to ~/.conky, or start conky with an explicit reference to the theme file using the -c option.
+Alternatively, just clone the repository manually into ~/.conky/conky-modern and install the font in the fonts folder, then create a symlink from ~/.conky/conky-modern/conky-modern.conky to ~/.conkyrc, or start conky with an explicit reference to the theme file using the -c option.
 
 ## Configuration
 As with all conky themes, this theme probably isn't very portable. It's configured and tested to work on my system, since that's the system I use it on, but to get it working to your liking on your system, you may have to modify it. This section covers the most common modifications you may need to make.
@@ -25,7 +25,7 @@ To change the media player for the theme to read data from, you must change ever
 I can only test with an Nvidia GPU and the Nvidia proprietary driver, but if you're using an AMD or Intel GPU, or even a different driver, you'll need to modify the commands used to get GPU information since none of them are native to conky. I don't know and can't test the specific commands needed, so you'll need to use Google to find commands that work for you, then simply change the commands in the ```execi``` variables.
 
 ## Known Issues
-- None! (Probably isn't very efficient though, not sure what can be done about this though)
+- None! (Probably isn't very efficient, though I'm not sure what can be done about this)
 
 ## Attributions
 - Based originally on [conky-spoclo](https://github.com/Dacha204/conky-spoclo)
