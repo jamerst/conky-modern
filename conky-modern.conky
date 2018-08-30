@@ -63,12 +63,16 @@ ${voffset -5}${goto 65}${font GE Inspira:size=16}${execi 1000 nvidia-smi --query
 \
 ${image ~/.conky/conky-modern/ram.png -p 0, 303 -s 50x50}\
 ${voffset 20}${goto 65}${font GE Inspira Bold:size=18}${mem}B (${memperc}%)
-${voffset -5}${goto 65}${font GE Inspira:size=16}Top Process: ${execi 1 ps aux --sort=-%mem --noheaders | awk '{print $11}' | head -1 | sed 's!.*/!!'} (${top_mem mem_res 1}B)${voffset 30}
+${voffset -5}${goto 65}${font GE Inspira:size=16}Top Process: ${execi 1 ps aux --sort=-%mem --noheaders | awk '{print $11}' | head -1 | sed 's!.*/!!'} (${top_mem mem_res 1}B)
+\
+${image ~/.conky/conky-modern/net.png -p 0, 374 -s 50x50}\
+${voffset 20}${goto 65}${font GE Inspira Bold:size=18}${downspeed eno1} / ${upspeed eno1}
+${voffset -5}${goto 65}${font GE Inspira:size=16}Total: ${totaldown eno1} / ${totalup eno1}${voffset 30}
 \
 ${if_running yarock}\
 	${if_match "${execi 0.5 ~/.conky/conky-modern/scripts/state.sh yarock}" != "Stopped"}\
 		${execi 0.5 ~/.conky/conky-modern/scripts/cover.sh yarock}\
-		${image ~/.conky/conky-modern/cover.png -p 0,375 -s 120x120}\
+		${image ~/.conky/conky-modern/cover.png -p 0,445 -s 120x120}\
 		\
 		${voffset -10}${font GE Inspira Bold:size=18}${execpi 0.5 ~/.conky/conky-modern/scripts/title.sh yarock | fold -w 35 -s | sed 's/^/${goto 135}/'}
 		${font GE Inspira:size=16}${execpi 0.5 ~/.conky/conky-modern/scripts/artist.sh yarock | fold -w 55 -s | sed 's/^/${goto 135}/'}

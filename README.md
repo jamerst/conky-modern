@@ -21,6 +21,9 @@ The position of the meter can be set using the ```alignment```, ```gap_x``` and 
 ### Setting Media Player
 To change the media player for the theme to read data from, you must change every instance of ```yarock``` in the theme file to the name of your chosen player. For this theme to work, your chosen player needs to implement [MPRIS](https://specifications.freedesktop.org/mpris-spec/latest/). If your player doesn't implement MPRIS, but has an alternative way to extract data about the currently playing media, you can modify the scripts in ~/.conky/conky-modern/scripts to perform the data retrieval actions.
 
+### Network Information
+To change the source of network information, change every instance of ```eno1``` to the identifier of your desired network interface. This can be found by running the command ```ifconfig``` in a terminal.
+
 ### GPU Information
 I can only test with an Nvidia GPU and the Nvidia proprietary driver, but if you're using an AMD or Intel GPU, or even a different driver, you'll need to modify the commands used to get GPU information since none of them are native to conky. I don't know and can't test the specific commands needed, so you'll need to use Google to find commands that work for you, then simply change the commands in the ```execi``` variables.
 
