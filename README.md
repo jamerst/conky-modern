@@ -4,10 +4,14 @@
 ![conky-modern preview](preview.jpg)
 
 ## Installation
-Run the following command in a terminal:
+### Dependencies
+[Playerctl](https://github.com/altdesktop/playerctl) for media information
+
+### Instructions
+Install playerctl, and run the following command in a terminal:
 ```
 wget -O - https://github.com/jamerst/conky-modern/raw/master/install.sh | bash
-``` 
+```
 This will download and run the install.sh script, which will clone the repository into the correct directory, install the necessary font, and create a symlink to ~/.conkyrc. Any existing .conkyrc will not be overwritten, but will be renamed.
 
 Alternatively, just clone the repository manually into ~/.conky/conky-modern and install the font in the fonts folder, then create a symlink from ~/.conky/conky-modern/conky-modern.conky to ~/.conkyrc, or start conky with an explicit reference to the theme file using the -c option.
@@ -19,7 +23,9 @@ As with all conky themes, this theme probably isn't very portable. It's configur
 The position of the meter can be set using the ```alignment```, ```gap_x``` and ```gap_y``` variables in the conky theme file (~/.conkyrc if you used the install script). The theme is best optimised for the ```top_left``` alignment, and it hasn't been tested with the other layouts, so I wouldn't advise changing this. If you find that the theme displays on the wrong monitor, as I found it did, using a large/negative value for ```gap_x``` was the easiest way I found to move it to the correct monitor.
 
 ### Setting Media Player
-To change the media player for the theme to read data from, you must change every instance of ```yarock``` in the theme file to the name of your chosen player. For this theme to work, your chosen player needs to implement [MPRIS](https://specifications.freedesktop.org/mpris-spec/latest/). If your player doesn't implement MPRIS, but has an alternative way to extract data about the currently playing media, you can modify the scripts in ~/.conky/conky-modern/scripts to perform the data retrieval actions.
+Playerctl should work with any media player that implements [MPRIS](https://specifications.freedesktop.org/mpris-spec/latest/). Change ```PLAYER_NAME``` on line 72 of the theme file to the process name of your chosen media player to allow detecting when the player is open.
+
+If your player doesn't implement MPRIS, but has an alternative way to extract data about the currently playing media, you can modify the theme file to perform the data retrieval actions.
 
 ### Network Information
 To change the source of network information, change every instance of ```eno1``` to the identifier of your desired network interface. This can be found by running the command ```ifconfig``` in a terminal.

@@ -69,14 +69,14 @@ ${image ~/.conky/conky-modern/net.png -p 0, 374 -s 50x50}\
 ${voffset 20}${goto 65}${font GE Inspira Bold:size=18}${downspeed eno1} / ${upspeed eno1}
 ${voffset -5}${goto 65}${font GE Inspira:size=16}Total: ${totaldown eno1} / ${totalup eno1}${voffset 30}
 \
-${if_running yarock}\
-	${if_match "${execi 0.5 ~/.conky/conky-modern/scripts/state.sh yarock}" != "Stopped"}\
-		${execi 0.5 ~/.conky/conky-modern/scripts/cover.sh yarock}\
-		${image ~/.conky/conky-modern/cover.png -p 0,445 -s 120x120}\
+${if_running PLAYER_NAME}\
+	${if_match "${execi 0.5 playerctl status}" != "Stopped"}\
+		${execi 0.5 ~/.conky/conky-modern/scripts/cover.sh}\
+		${image ~/.conky/conky-modern/cover -p 0,445 -s 120x120}\
 		\
-		${voffset -10}${font GE Inspira Bold:size=18}${execpi 0.5 ~/.conky/conky-modern/scripts/title.sh yarock | fold -w 35 -s | sed 's/^/${goto 135}/'}
-		${font GE Inspira:size=16}${execpi 0.5 ~/.conky/conky-modern/scripts/artist.sh yarock | fold -w 55 -s | sed 's/^/${goto 135}/'}
-		${font GE Inspira:size=14}${execpi 0.5 ~/.conky/conky-modern/scripts/album.sh yarock | fold -w 55 -s | sed 's/^/${goto 135}/'}
+		${voffset -10}${font GE Inspira Bold:size=18}${execpi 0.5 playerctl metadata xesam:title | fold -w 35 -s | sed 's/^/${goto 135}/'}
+		${font GE Inspira:size=16}${execpi 0.5 playerctl metadata xesam:artist | fold -w 55 -s | sed 's/^/${goto 135}/'}
+		${font GE Inspira:size=14}${execpi 0.5 playerctl metadata xesam:album | fold -w 55 -s | sed 's/^/${goto 135}/'}
 	${endif}\
 ${endif}\
 ]];
